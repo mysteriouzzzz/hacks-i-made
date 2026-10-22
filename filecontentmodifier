@@ -1,0 +1,24 @@
+# bionic/level_0.2_simulation.py
+import os
+
+def modify_file_in_workspace():
+    # Define the file path and its initial content; let's assume 'sample.txt' exists in the workspace
+    file_path = "sample.txt"
+
+    # Read the current content of the file (simulate reading for analysis)
+    with open(file_path, 'r') as f:
+        original_content = f.read()
+        print(f"Original Content: {original_content}")
+
+    # Modify the file by adding an attack-like string
+    new_content = f"[HACKED] Original Content: {original_content}\nThis is an attack simulation."
+
+    # Write back to the file (simulate writing with malicious code)
+    with open(file_path, 'w') as f:
+        f.write(new_content)
+
+    print("File modified. Simulated level 0.2 hacking completed.")
+
+# Run the function
+if __name__ == "__main__":
+    modify_file_in_workspace()
