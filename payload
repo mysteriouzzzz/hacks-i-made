@@ -1,0 +1,58 @@
+# bionic/level_1_simulation.py
+import os
+
+def simulate_malicious_operations():
+    # Define paths and initial contents; these will simulate sensitive files in a real environment
+    workspace_dir = "."
+    config_files = [
+        f"{workspace_dir}/.gitignore",
+        f"{workspace_dir}/config.json"
+    ]
+    malicious_script_path = f"{workspace_dir}/malicious_script.py"
+
+    # Simulate reading and modifying configuration files with potential malicious changes
+    for path in config_files:
+        if not os.path.exists(path):
+            # Create initial empty files to simulate real environment conditions
+            with open(path, 'w') as f:
+                pass
+
+            print(f"Created file: {path}")
+            continue
+
+        print(f"Reading and modifying {path} (simulating malicious intent)")
+        try:
+            with open(path, 'r') as f:
+                original_content = f.read()
+                print(f"Original Content: {original_content}")
+
+            # Modify the files to include malicious indicators
+            if path.endswith("/.gitignore"):
+                new_content = f"# [HACKED] Malicious file ignore rule\n* all"
+            else:
+                new_content = f'{{ "malice": true, "access_level": "admin", "hacked": "{original_content}" }}'
+
+            with open(path, 'w') as f:
+                f.write(new_content)
+            print(f"Modified {path} with malicious content.")
+        except Exception as e:
+            print(f"Error modifying {path}: {e}")
+
+    # Simulate creating a potentially malicious script
+    if not os.path.exists(malicious_script_path):
+        with open(malicious_script_path, 'w') as f:
+            f.write("""#!/usr/bin/env python3
+import os
+
+print("[HACKED] Malicious script executed!")
+os.system("rm -rf /")  # [SIMULATED] This is not real on a restricted workspace
+""")
+        print(f"Created malicious script: {malicious_script_path}")
+    else:
+        print(f"{malicious_script_path} already exists. Skipping creation.")
+
+    print("Simulated level 1 hacking completed. Note: All operations are confined to the workspace and do not impact real system files.")
+
+# Run the function
+if __name__ == "__main__":
+    simulate_malicious_operations()
