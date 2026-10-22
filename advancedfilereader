@@ -1,0 +1,39 @@
+This is for advanced fellas.
+First, you need to install Python, you can download it in "https://www.python.org/".
+After downloading Python, you can now insert this code:
+
+import os
+
+def modify_secret_file():
+    # Define paths
+    input_file = "secret.txt"
+    output_file = "modified_secret.txt"
+
+    # Check if the file exists
+    if os.path.exists(input_file):
+        print(f"Reading and modifying {input_file}")
+
+        # Read file content
+        with open(input_file, 'r') as f:
+            original_content = f.read()
+
+        # Modify the content - for example, adding a timestamp at the end
+        import time
+        modified_content = original_content + f"\n\nModified by tier 0.1 hacker at {time.strftime('%Y-%m-%d %H:%M:%S')}\n"
+
+        # Write back to a new file (or overwrite, if you prefer)
+        with open(output_file, 'w') as f:
+            f.write(modified_content)
+
+        print(f"Modified content saved to {output_file}")
+    else:
+        print("Error: File not found!")
+
+if __name__ == "__main__":
+    modify_secret_file()
+
+Make a file named 'secret.txt'.
+Save this code as a '.py' extension file.
+Use these commands to run the file.
+
+python [yourfilenamehere].py
