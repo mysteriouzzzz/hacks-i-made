@@ -1,0 +1,44 @@
+# bionic/level_0.5_simulation.py
+import os
+
+def simulate_advanced_hacking():
+    # Define paths and initial file contents (simulated)
+    workspace_dir = "."
+    base_file_path = f"{workspace_dir}/sample.txt"
+    subdir_path = f"{workspace_dir}/hacked_dir"
+
+    # Create a subdirectory to simulate privilege escalation
+    if not os.path.exists(subdir_path):
+        os.makedirs(subdir_path, exist_ok=True)
+        print(f"Created directory: {subdir_path}")
+
+    # Define files and their contents; let's assume these exist in the workspace
+    file_paths = [base_file_path, f"{workspace_dir}/config.json", f"{subdir_path}/secret.txt"]
+    initial_contents = {
+        base_file_path: "Original Content for sample.txt",
+        f"{workspace_dir}/config.json": '{"settings": {"user": "admin"}}',
+        f"{subdir_path}/secret.txt": "This is a secret."
+    }
+
+    # Read and modify each file
+    for path in file_paths:
+        with open(path, 'r') as f:
+            original_content = f.read()
+            print(f"Reading from {path}:")
+            print(f"Original Content: {original_content}")
+            print("---------------")
+
+        # Modify the content to simulate an attack (e.g., adding a flag or changing settings)
+        if path.endswith("/secret.txt"):
+            new_content = f"[HACKED] {original_content} - Access granted."
+        else:
+            new_content = f"[HACKED] {original_content}\nThis is an escalation to multiple files."
+
+        with open(path, 'w') as f:
+            f.write(new_content)
+        print(f"Modified {path} successfully.")
+        print("---------------")
+
+    print("Simulated level 0.5 hacking completed.")
+
+# Run the function
