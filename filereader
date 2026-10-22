@@ -1,0 +1,20 @@
+Make a new file and insert this code:
+
+#!/bin/bash
+echo "--File Reader--"
+read_file="file.txt"
+if [ -f "$read_file" ]; then
+    echo "File exists: $read_file"
+    cat "$read_file"
+else
+    echo "Error: File not found!"
+fi
+
+Save this as anything you want but it has to be a file with the '.sh' extension.
+Make a file named 'file.txt', for example.
+In the shell command prompt, run these commands:
+
+chmod +x [yourfilename].sh
+./[yourfilename].sh
+
+Check if it prints the content of the 'file.txt' file.
